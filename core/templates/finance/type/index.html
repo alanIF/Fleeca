@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% block content %}
+   <table class="table">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Operation</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {%if not types %}
+                <tr>
+                    <td  class="text-center" colspan="3">Empty registers</td>
+                </tr>
+            {% endif%}
+            {% for type in types %}
+                <tr>
+                    <td>
+                        {{type.name}}
+                    </td>
+                    <td>
+                        {{type.operation}}
+                    </td>
+                    <td>
+                        <a href="{% url 'edit_type' type.id %}" class="button btn btn-warning mr-2">Edit</a>
+                        <a href="{% url 'delete_type' type.id %}" class="button btn btn-danger">-</a>
+
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+        <tfoot>
+            <tr>
+                <th colspan><a href="/finance/type/add" class="button btn btn-success">+</a></th>
+                <th colspan="2"></th>
+            </tr>
+        </tfoot>
+
+   </table>
+{% endblock %}
